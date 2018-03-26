@@ -1,0 +1,58 @@
+.jumbotron {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+    /*background-color: #e4d5dd;*/
+}
+
+body {
+    background-image: url("../images/memphis-colorful.png")
+}
+
+h1 {
+    margin-bottom: 0px;
+    font-weight: bold!important;
+}
+
+p {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+}
+
+.form-control {
+    width: 60%;
+    border-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+#nameForm {
+    background-color: #eeecb0;
+    padding-top: 25px;
+}
+
+#player1 {
+    background-color: #c5edee;
+    height: 300px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+#player2 {
+    background-color: #d0eed8;
+    height: 300px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+#result {
+    background-color: #eedee5;
+    height: 300px;
+}
+#chat {
+    background-color: #d0d2ee;
+    height: 200px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
