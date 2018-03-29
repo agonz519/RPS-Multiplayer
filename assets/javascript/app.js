@@ -63,6 +63,7 @@ $(document).ready(function(){
 					ties: player1Ties,
 					choice: player1Choice
 				});
+				db.ref("players/1").onDisconnect().remove();
 			} else if (snapshot.child("players/2").exists() === false){
 				player2Name = name;
 				db.ref("players/2").update({
@@ -72,6 +73,7 @@ $(document).ready(function(){
 					ties: player2Ties,
 					choice: player2Choice
 				});
+				db.ref("players/2").onDisconnect().remove();
 			} else {
 				alert("Sorry, game is full. Please wait...");
 				$('#nameInput').val("");
