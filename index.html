@@ -12,8 +12,11 @@
 	<!-- MY CSS FILE -->
 	<link rel="stylesheet" href="assets/css/style.css">
 
-	<!-- FIREBASE REFERENCE -->
-	<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+	<!-- FIREBASE CLIENT, DATABASE, MESSAGING -->
+	<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-messaging.js"></script>
+
 
 	<!-- JQUERY -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -37,12 +40,13 @@
 
 <!-- MAIN BODY -->
 <div class="container">
+	<!-- NAME SUBMISSION -->
 	<div class="form-row justify-content-center">
 		<div id="nameForm" class="col-5">
 			<form class="form-inline justify-content-center">
 				<div class="form-group">
-					<input type="text" class="form-control" id="nameInput" placeholder="Enter Your Name">
-					<button type="submit" class="btn btn-dark">Submit</button>
+					<input id="nameInput" type="text" class="form-control"  placeholder="Enter Your Name">
+					<button id="submitName" type="submit"  class="btn btn-dark">Submit</button>
 				</div>
 			</form>
 			<br>
@@ -50,26 +54,36 @@
 	</div>
 
 	<div class="row">
+		<!-- PLAYER ONE -->
 		<div id="player1" class="col-4">
 			<h3 class="text-center">Player 1</h3>
-
+			<div id="player1name" class="text-center">
+				<!-- Name of Player 1 -->
+			</div>
 		</div>
+
+		<!-- RESULT -->
 		<div id="result" class="col-4">
 			<h3 class="text-center">FIGHT</h3>
-
 		</div>
+
+		<!-- PLAYER TWO -->
 		<div id="player2" class="col-4">
 			<h3 class="text-center">Player 2</h3>
-
+			<div id="player2name" class="text-center">
+				<!-- Name of Player 2 -->
+			</div>
 		</div>
 	</div>
+
 	<div class="row justify-content-center">
+		<!-- CHAT -->
 		<div id="chat" class="col-10">
 			<h3 class="text-center">TALK SHIT</h3>
 		</div>
 	</div>
-</div>
 
+</div>
 
 </body>
 </html>
