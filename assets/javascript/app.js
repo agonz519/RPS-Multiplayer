@@ -51,6 +51,8 @@ $(document).ready(function(){
 			$('#player2name').text("");
 		}
 
+		turn = snapshot.val().turn;
+
 		// SUBMIT NAME CLICK EVENT
 		$("#submitName").on("click", function(event) {
 			// PREVENT RELOAD OF PAGE
@@ -86,11 +88,24 @@ $(document).ready(function(){
 		});
 
 		if (snapshot.child("players/1").exists() && snapshot.child("players/2").exists()) {
-			db.ref().update({
+			db.ref().set({
 				turn: turn
 			});
+		}
+
+		db.ref().on("value", function(snaps) {
+			console.log(snaps.val().turn);
+			turn = snaps.val().turn;
+		}, function(errorObject) {
+			console.log("the read failed: " + errorObject.code);
+		});
+
+
+
+		db.ref("turn").on("value", function(snappy) {
+			console.log(snappy.val());
 			$("#p1Choice").show();
-			if (turn = 1) {
+			if (snappy.val().turn === 1) {
 				$("#result").text("Waiting on player 1");
 				$("#rock1").on("click", function() {
 					$("#rock1").css("font-weight", "bold");
@@ -99,12 +114,13 @@ $(document).ready(function(){
 					db.ref("players/1").update({
 						choice: player1Choice,
 					});
+					turn++;
 					db.ref().update({
-						turn: turn++
+						turn: turn
 					});
 				});
 			}
-			if (turn = 2) {
+			if (snappy.val().turn === 2) {
 				$("#result").text("Waiting on player 2");
 				$("#paper2").on("click", function() {
 					$("#paper2").css("font-weight", "bold");
@@ -113,19 +129,19 @@ $(document).ready(function(){
 					db.ref("players/2").update({
 						choice: player2Choice,
 					});
+					turn++
 					db.ref().update({
-						turn: turn++
+						turn: turn
 					});
 				});
 			}
-			if (turn = 3) {
+			if (snappy.val().turn === 3) {
 				if (player1Choice === player2Choice) {
 					db.ref("players/1").update({ties: player1Choice++});
 					db.ref("players/2").update({ties: player2Choice++});
 				} else if (player1Choice === 'rock' && player2Choice === "scissors") {
 					db.ref("players/1").update({wins: player1Wins++});
 					db.ref("players/2").update({wins: player2Losses++});
-					$("#result").text("PLAYER 1 ROCKED YOU");
 				} else if (player1Choice === 'paper' && player2Choice === "rock") {
 					db.ref("players/1").update({wins: player1Wins++});
 					db.ref("players/2").update({wins: player2Losses++});
@@ -141,7 +157,9 @@ $(document).ready(function(){
 					turn: turn
 				});
 			}
-		}
+		})
+
+
 
 
 	}, function(errorObject) {
